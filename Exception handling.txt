@@ -1,0 +1,355 @@
+//public class module_info{
+//public static void main(String arg[]){
+//	int i=0;
+//	int j=18/i; //ArithmeticException
+//	System.out.println(j);
+//	System.out.println("hii");
+//	
+//}
+//}
+/*
+public class module_info{
+public static void main(String arg[]){
+	int i=0;
+    int j=0;
+    try // try to execute this i.e. it will throw the exception because i=0
+    {
+    	 j=18/i;
+    }
+    catch(Exception e)// the movement try block throwing as object and we have to accept it as object
+    // Exception is a class and e is object.
+    //catch block will be executed in the case of exception otherwise catch block will be skipped
+    {
+    	System.out.println("something went wrong");
+    	// you as a developer try to catch the exception
+    }
+	System.out.println(j);
+	System.out.println("hii");
+	
+}
+}
+output -something went wrong
+0
+hii 
+*/ 
+............................................................................................................................................................................................
+
+
+/*public class module_info{
+public static void main(String arg[]){
+	int i=2;
+    int j=0;
+    int arr[]=new int[5];
+    
+    try 
+    {
+    	 j=18/i;// if we get exception here then it directly jump on catch block without seeing sop's line
+    	 //therefore we change  the value of i and we handle  ArithmeticException exception
+    	 System.out.println(arr[2]);
+    	 System.out.println(arr[5]);// we are trying to be out of bound,exception raise here
+    	 
+    }
+    catch(Exception e)
+    {
+    	System.out.println("something went wrong" + e);// e for print exception
+    	//System.out.println("something went wrong" + e);
+    	
+    	
+    }
+	System.out.println(j);
+	System.out.println("hii");
+}
+}
+
+0
+something went wrongjava.lang.ArrayIndexOutOfBoundsException: Index 5 out of bounds for length 5
+9
+hii*/
+............................................................................................................................................................................................
+
+/*
+in Java, you can use a single try block with multiple catch blocks to handle various types of exceptions. Each catch block deals with a specific exception type, 
+and Java selects the first matching catch block based on the thrown exception. 
+The catch blocks should be ordered from specific to general, and if there's no match, an unhandled exception error may occur.
+
+public class module_info{
+public static void main(String arg[]){
+	int i=0;
+    int j=0;
+    int arr[]=new int[5];
+    
+    try 
+    {
+    	 j=18/i;
+    	 System.out.println(arr[2]);
+    	System.out.println(arr[5]);// we are trying to be out of bound
+    	 
+    }
+    catch( ArithmeticException e)
+    {
+    	System.out.println("can not divide by zero" + e);
+    
+     }
+    catch(ArrayIndexOutOfBoundsException e)
+    {
+    	System.out.println("array size is fix  " + e);
+    
+     }
+	System.out.println(j);
+	System.out.println("hii");
+
+
+}
+}
+output-can not divide by zerojava.lang.ArithmeticException: / by zero
+0
+hii
+*/
+............................................................................................................................................................................................
+
+
+
+// whenever we have child and parent make sure that you're parent at the bottom,exception is top class parent
+// exception extends throwable throwable is top most class
+
+public class module_info{
+public static void main(String arg[]){
+	int i=0;
+    int j=0;
+    int arr[]=new int[5];
+    
+    try 
+    {
+    	 j=18/i;
+    	 System.out.println(arr[2]);
+    	System.out.println(arr[5]);// we are trying to be out of bound
+    	 
+    }
+    catch(Exception e)// error bcz whenever we have child and parent make sure that you're parent at the bottom,exception is top class parent, this catch must be at bottom
+    {
+    	
+    }
+    catch( ArithmeticException e)
+    {
+    	System.out.println("can not divide by zero" + e);
+    
+     }
+    catch(ArrayIndexOutOfBoundsException e)
+    {
+    	System.out.println("array size is fix  " + e);
+    
+     }
+	System.out.println(j);
+	System.out.println("hii");
+}
+}
+
+error-Unreachable catch block for ArithmeticException. It is already handled by the catch block for Exception
+	Unreachable catch block for ArrayIndexOutOfBoundsException. It is already handled by the catch block for Exception
+............................................................................................................................................................................................
+
+throw- keyword is used to throw the exception and catch block will catch it
+
+public class bud{
+public static void main(String arg[]){
+	int i=20;
+    int j=0;
+    
+    try 
+    {
+    	 j=18/i;
+    	 if(j==0)
+    		 throw new ArithmeticException();// see the syntax of throw 
+    	 
+    }
+    
+    catch( ArithmeticException e)
+    {    
+    	j=18/1;
+    	System.out.println("i do not want print zero" + e);
+    
+     }
+    catch(Exception e)
+    {
+    	System.out.println("something went wrong " + e);
+    
+     }
+  
+	System.out.println(j);
+	System.out.println("hii");
+}
+}
+............................................................................................................................................................................................
+
+THROWING OWN EXCEPTION-custom exception in Java
+
+// throw new MayurException();
+// class MayurException
+//{
+//	
+//}
+//public MayurException(String String)
+//  {
+//	  
+//  }
+//  
+//class MayurException extends Exception
+// and then catch mayur exception bcz we throw mayur exception
+ 
+ 
+    	 
+
+
+
+class MayurException extends Exception  
+{
+  public MayurException(String message)
+  {
+	super(message);  
+  }
+  
+}
+public class bud{
+public static void main(String arg[]){
+	int i=20;
+    int j=0;
+    
+    try 
+    {
+    	 j=18/i;
+    	 if(j==0)
+    		 throw new MayurException(" want to print something");
+    	 
+    }
+    
+    catch( MayurException e)
+    {    
+    	j=18/1;
+    	System.out.println("i do not want print zero" + e);
+    
+     }
+    catch(Exception e)
+    {
+         e.printStackTrace();// call stack
+
+    	System.out.println("something went wrong " + e);
+    
+     }
+  
+	System.out.println(j);
+	System.out.println("hii");
+}
+}
+
+output=i do not want print zeroMayurException want to print something
+18
+hii
+...........................................................................................................................................................................................
+
+
+
+class MayurException extends Exception  
+{
+  public MayurException(String message)
+  {
+	super(message);  
+  }
+  
+}
+
+public class bud{
+public static void main(String arg[]){
+    
+    try
+    {
+    Class.forName("llll");//unreported exception ClassNotFoundException; must be caught or declared to be thrown
+    }
+    
+    catch(ClassNotFoundException e)
+    {
+      System.out.println("Not able to find the class" + e);  
+    }
+	int i=20;
+    int j=0;
+    
+    try 
+    {
+    	 j=18/i;
+    	 if(j==0)
+    		 throw new MayurException(" want to print something");
+    	 
+    }
+    
+    catch( MayurException e)
+    {    
+    	j=18/1;
+    	System.out.println("i do not want print zero" + e);
+    
+     }
+    catch(Exception e)
+    {
+    	System.out.println("something went wrong " + e);
+    
+     }
+  
+	System.out.println(j);
+	System.out.println("hii");
+}
+}
+
+output:
+Not able to find the classjava.lang.ClassNotFoundException: llll
+i do not want print zeroMayurException:  want to print something
+18
+hii
+...........................................................................................................................................................................................
+ 
+try catch finally :- 1)finally is reserved keyword in java i.e, we can’t use it as an identifier. The finally keyword is used in association with a try/catch block and guarantees that a section of code will be executed, even if an exception is thrown. The final block will be executed after the try and catch blocks, but before control transfers back to its origin. finally is executed even if try block has return statement.
+2)finally is used to close the resorce.
+
+public class Demo
+{
+    public static void main(String arg[])
+    {
+       int i=0;
+       int j=0;
+       
+       try
+       {
+           j=18/i;
+       }
+       catch(Exception e)
+       {
+           system.out.println("something went wrong");
+       }
+       finally // irrespective if we got the  exception or not
+       {
+           System.out.println(" bye");
+       }
+    }
+}
+............................................................................................................................................................................................
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
