@@ -1,0 +1,140 @@
+>Thread :- thread is smallest unit which we can work with .
+> difference between thread and process
+ - process cannot share memory but thread can
+>Run:- define by programmer and run by jvm scheduler
+      -whenver run method  is over thread is dead
+
+
+package jack;
+class A extends Thread
+{
+	public void show() {
+	for(int i=1;i<=5;i++){
+		System.out.println("hi");
+	}
+}
+}
+
+class B extends Thread
+{
+	public void show() {
+	for(int i=1;i<=5;i++){
+		System.out.println("hello");
+	}
+}
+}
+public class Daniels{
+	public static void main(String[] args) {
+		A obj = new A();
+		obj.show();
+		B obj1 = new B();
+		obj1.show();
+	}
+	
+}
+the ouput of above code will be
+hi
+hi
+hi
+hi
+hi
+hello
+hello
+hello
+hello
+hello
+but what if we want the output  parallel  
+  
+............................................................................................................................................................................................
+>running multiple threads at the same time  
+     
+package jack;                                                   
+class A extends Thread
+{
+	public void run() {
+	for(int i=1;i<=100;i++){
+		System.out.println("hi");
+	}
+}
+}
+
+class B extends Thread
+{
+	public void run(){
+	for(int i=1;i<=100;i++){
+		System.out.println("hello");
+	}
+}
+}
+public class Daniels{
+	public static void main(String[] args) {
+		A obj = new A();
+		obj.start();       //  start will invoke run methode
+		B obj1 = new B();
+		obj1.start();
+	}
+	
+}
+hi
+hi
+hi
+hi
+hello
+hello
+hello
+hello
+hello
+hello
+hello
+hello
+hi
+hi
+hi
+hello
+hello like wise .....
+............................................................................................................................................................................................
+
+>priority:
+  -1:minimal priority
+  -5:normal -> default priority
+  -10:maximum
+
+
+package jack;
+class A extends Thread
+{
+	public void run() {
+	for(int i=1;i<=100;i++){
+		System.out.println("hi");
+	}
+}
+}
+
+class B extends Thread
+{
+	public void run(){
+	for(int i=1;i<=100;i++){
+		System.out.println("hello");
+	}
+}
+}
+public class Daniels{
+	public static void main(String[] args) {
+		A obj = new A();
+		B obj1 = new B();
+		System.out.println(obj1.getPriority());// get priority(printed default priority)
+		
+		obj.start();
+	    obj1.start();
+	}
+	
+}
+
+
+output:-
+5(priority) below 5 there will be printed hi and hello
+
+
+
+  
+

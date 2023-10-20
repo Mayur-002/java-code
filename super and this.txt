@@ -1,0 +1,173 @@
+class A
+{
+    public A()
+    {
+        System.out.println("in A");// invoke due to default constructor
+    }
+    
+}
+class B extends A
+{
+    public B()
+    {
+        System.out.println("in B");
+    }
+}
+
+public class Demo
+{
+    public static void main(String arg[])
+    {
+        B obj = new B();
+    }
+}
+
+output=
+in A
+in B
+...........................................................................................................................................................................................
+
+// Every constructor in java has a method there evren if we don't mention that method is "SUPER" means call the constructor of super or parent class.
+
+
+
+
+class A
+{
+    public A()                       //get invoke
+    {
+        super();
+        System.out.println("in A");
+    }
+     public A(int n)
+    {
+        super();
+       System.out.println("in a int");
+    }
+    
+}
+class B extends A
+{
+    public B()
+    {
+        super();  // every contsructor in a first line thre is super 
+        System.out.println("in B");
+    }
+    public B(int n)                  //get invoke
+    {
+        super();// is there even if we don't mention it
+       System.out.println("in b int");
+    }
+}
+
+public class Demo
+{
+    public static void main(String arg[])
+    {
+        B obj = new B(5);
+    }
+}
+
+output-
+in A    // due to super
+in b int
+............................................................................................................................................................................................
+
+ flow of excution
+
+class A extends object // every class in java inherited from object 
+{
+    public A()
+    {
+        super(); // this super reprensent constructor of object class
+        System.out.println("in A");
+    }
+     public A(int n) 4]
+    {
+       System.out.println("in a int");5]
+    }
+    
+}
+class B extends A
+{
+    public B()
+    {    
+        super();
+        System.out.println("in B");
+    }
+    public B(int n)2]
+    {  
+       super(n); // passsing the parameter in super 3] // if we dont give parameter in super then it will invoke default constructor of parent A 
+       System.out.println("in b int");6]
+    }
+}
+
+public class Demo
+{
+    public static void main(String arg[])
+    {
+        B obj = new B(5); //1]
+    }
+}
+
+output 
+in a int
+in b int
+............................................................................................................................................................................................
+
+this--->> 1) when we create object we have no of copies of instance member but only one copy of member function then how member function know for which object we have to perform a task
+so this will come into picture which invokes the current object.
+          2) and also this will execute or invoke the constructor of same class
+
+
+class A  
+{
+    public A()6)
+    {
+        
+        System.out.println("in A");
+    }
+     public A(int n) 
+    {
+       System.out.println("in a int");
+    }
+    
+}
+class B extends A
+{
+    public B() 4)
+    {    
+        super(); 5)
+        System.out.println("in B");
+    }
+    public B(int n)2)
+    {  
+        this(); // this will execute the constructor of same class i.e. class B 3)
+       System.out.println("in b int");
+    }
+}
+
+public class Demo
+{
+    public static void main(String arg[])
+    {
+        B obj = new B(5); 1)
+    }
+}
+
+  //Difference between this and super
+ //this method execute the constructor of same class 
+ //super method execute the constructor of parent class 
+// we can not use this and super at a time
+
+
+ 
+ 
+
+
+
+
+
+
+
+
