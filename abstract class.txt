@@ -1,0 +1,60 @@
+/*1) we made car class in which we do not defined drive feature like playlist  but we declare drive feature bcz we don't know how to implement drive ,
+ i.e how to drive car ,car don't know how to drive but grantarino which is real car know's how to drive so instead of declaring it we define the drive in  grantarino
+ so we use abstract keyword for drive bcz we have abstract idea ,and its giving error so we also use for car class
+ 2) so we have only abstract method in abstract class.
+ 3) we can not create object of abstract class
+ */
+
+
+abstract class car // abstract class can not be instantiate 
+{
+	public abstract void drive(); // declaring abstract methode 1
+	public abstract void fly(); // declaring abstract methode 2
+	
+	
+	public void playlist()// defining
+	{
+		System.out.println("play music");
+	}
+	
+}
+ 
+
+class grantarino extends car // concrete class
+{
+	public void drive()// here child class override the abstract method of abstract class
+	{
+		System.out.println(" Driving...");
+		
+	}
+	public void fly()// here child class override the abstract method of abstract class
+	{
+		System.out.println(" fly in the sky...");
+	}
+	
+	
+	
+	
+}
+public class  module_info
+{
+	public static void main (String arg[]) {
+		grantarino ref= new grantarino();// child object not abstract object
+		ref.drive();// calling methode 1
+		ref.playlist();
+		ref.fly();    // calling methode 2
+		
+		
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
