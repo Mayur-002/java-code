@@ -1,0 +1,90 @@
+Topic:-Polymorphism( many Behaviour)
+1) compile time (early binding)-behaviour defined at compile time-overloading
+2)Run time (late binding)-behaviour defined at run time-overiding
+3) different object have different behaviour called run time polymorphism
+
+
+
+class A{                                 // parent class 
+	public void show() {
+		System.out.println("in a show");
+	}
+
+}
+class B extends A{                      // child extends parent 
+	public void show() {
+		System.out.println("in b show");
+	}
+	
+}
+class C extends A{
+	public void show() {
+		System.out.println("in c show");
+	}
+	
+}
+
+	
+public class module_info{
+		public static void main(String arg[]) {
+			A ref=new A();// we can pass refrence of child and also parents,left side type and right side content
+			ref.show();// one refrence can not refer 2 objects
+			 ref=new B();
+			ref.show();
+			ref=new C();
+			ref.show();
+			 
+		}
+		
+		
+	}
+
+
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Polymorphism is the ability of an object to take on many forms. 
+e.g.
+Animal behaves like  dog,cat,tiger.
+
+
+
+class animal{
+	void makesound(){
+		
+	}
+}
+class dog extends animal{
+	void makesound() {
+		System.out.println("bark");
+	}
+}
+class cat extends animal{
+	void makesound() {
+		System.out.println("meow");
+	}
+}
+class tiger extends animal{
+	void makesound() {
+		System.out.println("roar");
+	}
+}
+
+class module_info{
+	static void makesound(animal ref) {   //Polymorphic invocation in Java refers to the ability of objects of different classes to respond to the same method call in a way that is appropriate for their specific types
+		ref.makesound();}
+		
+	public static void main(String arg[]){
+	makesound(new tiger());
+	makesound(new dog());
+	makesound(new cat());
+	makesound(new tiger());
+	
+	
+}
+
+	
+}
+
+
