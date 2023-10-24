@@ -1,0 +1,161 @@
+topic: upcaste-Upcasting refers to typecasting a child object to a parent object
+
+
+A ref=new B();
+ref.show1();
+
+-in this step what happens compiler checks the type  of ref that is of parent type A
+then compiler search function show1 in class A if its present there then it checks 
+(private ,static,friend-early binding) then handle to jvm which checks content of object (child)
+at run time and according to this call the function
+-if the content is in child class then take the content and if its not there then it goes to parent and takes the content respectively
+
+
+A ref=new B();
+ref.show1();
+ or 
+A ref=(A)new B();
+ref.show1();
+
+-A ref=(A)new B(); this step of casting is done by compiler which is happen implicitly
+
+
+
+
+
+class A{
+	 public void show1() {
+		 System.out.println("in a A show");
+	 }
+}
+class B extends A{
+	public void show2() {
+		 System.out.println("in B show");
+	 }
+}
+public class module_info{
+	public static void main(String arg[]) {
+		A ref=new B();
+		ref.show1();
+		
+	}
+}
+..........................................................................................................................................................................................
+upcaste
+
+
+Animal behaves like  dog,cat,tiger.
+
+
+
+class animal{
+	void makesound(){
+		
+	}
+}
+class dog extends animal{
+	void makesound() {
+		System.out.println("bark");
+	}
+}
+class cat extends animal{
+	void makesound() {
+		System.out.println("meow");
+	}
+}
+class tiger extends animal{
+	void makesound() {
+		System.out.println("roar");
+	}
+}
+
+class module_info{
+	static void perform(animal ref) {   //Polymorphic invocation in Java refers to the ability of objects of different classes to respond to the same method call in a way that is appropriate for their specific types
+		ref.makesound();}
+		
+	public static void main(String arg[]){
+	perform(new tiger());//  tiger obj=new tiger();
+                               // perform(obj)
+	perform(new dog());
+	perfrom(new cat());
+	perform(new tiger());
+	
+	
+}
+
+	
+}
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+upcasting with help of array
+
+
+class animal{
+	  void makesound() {
+		
+	}
+}
+class dog extends animal{
+       void makesound() {
+		System.out.println("Bark");
+	}
+}
+class cat extends animal{
+	   void makesound() {
+		System.out.println("meow");
+	}
+}
+class tiger extends animal{
+      void makesound() {
+		System.out.println("roar");
+	}
+      void hunting() 
+     {
+    	System.out.println("hunt everyone");
+      }
+	
+
+}
+public class module_info{
+	 static void  makesound(animal ref) {
+		ref.makesound();// polymorphic invocation
+		
+	}
+
+	
+		 
+	public static void main(String arg[]) {
+	
+	
+	{
+		
+//		makesound(new dog());
+//		makesound(new cat());
+//		makesound(new tiger());
+//		hunting(new tiger());
+		animal arr[]=new animal[3];
+		arr[0]=new dog();
+		arr[1]=new cat();
+		arr[2]=new tiger();
+		for(int i=0;i<2;i++) {
+			arr[i].makesound();
+		}
+		
+		
+		
+	}
+}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
