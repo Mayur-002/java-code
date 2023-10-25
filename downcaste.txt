@@ -1,0 +1,160 @@
+Downcaste:-Downcasting provides casting a parent object to a child object.
+
+
+
+1)class A{
+	 public void show1() {
+		 System.out.println("in a A show1");
+	 }
+}
+class B extends A{
+	
+	 public void show2() {
+		 System.out.println("in B show2");
+	 }
+}
+public class module_info{
+	public static void main(String arg[]) {
+		
+		
+		
+		A ref=new B();         
+		ref.show1();
+		B ref1=(B)ref;
+		ref1.show2();
+	}
+}
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Downcasting:-
+
+instanceof - 1)is a keyword which works with only refrence not with primitive type
+2)It returns either true or false
+3)class cast exception can be handled by instance of 
+4)class cast exception means when you try to caste the classes out of hireachy 
+5)if( ref instanceof ref1(ref1 is of same hirecachy of ref){
+downcasting
+}
+6) check "is-a" relation
+
+class animal{
+	  void makesound() {
+		
+	}
+}
+class dog extends animal{
+       void makesound() {
+		System.out.println("Bark");
+	}
+}
+class cat extends animal{
+	   void makesound() {
+		System.out.println("meow");
+	}
+}
+class tiger extends animal{
+      void makesound() {
+		System.out.println("roar");
+	}
+      void hunting() 
+     {
+    	System.out.println("hunt everyone");
+      }
+	
+
+}
+public class module_info{
+	 static void  perform(animal ref) {
+		ref.makesound();// polymorphic invocation
+		if(ref instanceof tiger) {
+			 tiger ref1  =(tiger)ref;  // Downcasting
+			 ref1.hunting();
+		}
+		
+	}
+
+	
+		 
+	public static void main(String arg[]) {
+	
+	
+	{
+		     
+	perform(new dog());
+        perform(new cat());
+    	perform(new tiger());
+		
+		
+		
+		
+		
+	}
+}
+
+}
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+downcaste with array:- array not use with polymorphic invocation
+
+
+class animal{
+	  void makesound() {
+		
+	}
+}
+class dog extends animal{
+       void makesound() {
+		System.out.println("Bark");
+	}
+}
+class cat extends animal{
+	   void makesound() {
+		System.out.println("meow");
+	}
+}
+class tiger extends animal{
+      void makesound() {
+		System.out.println("roar");
+	}
+      void hunting() 
+     {
+    	System.out.println("hunt everyone");
+      }
+	
+
+}
+public class module_info{
+	 
+	
+	
+		 
+	public static void main(String arg[]) {
+	
+	
+	  {
+		animal arr[]=new animal[3];
+		 arr[0]= new dog();
+		 arr[1]= new cat();
+		 arr[2]= new tiger();
+		 for(int i=0;i<3;i++) 
+		 {	
+			if(arr[i] instanceof tiger)
+		{
+			 tiger t = (tiger)arr[i];
+			 t.hunting();
+			
+		 }
+		 
+		
+		
+		
+		
+		
+		
+	}
+}
+
+}
+}
+
