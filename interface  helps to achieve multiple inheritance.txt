@@ -1,0 +1,59 @@
+
+// multiple inheritance code 
+/* 
+class A 
+{
+	void show()
+	{
+		System.out.println("this is  class A");
+	}
+}
+ 
+class B
+
+{
+	void show()
+	{
+		System.out.println("this is  class B");
+	}
+}
+ 
+class module_info extends A,B// error 
+{
+	public static void main(String arg[]){
+		Multiple m=new Multiple();
+		m.show();
+	}
+}
+*/
+............................................................................................................................................................................................
+interface A 
+{
+	void show();// methods are by default public and abstract
+//	{
+//		System.out.println("this is  class A");
+//	}
+}
+ 
+interface B
+
+{
+	void show();//override
+//	{
+//		System.out.println("this is  class B");
+//	}
+}
+ 
+class module_info implements A,B
+{
+	public void show()// methods are by default public and
+	{
+		System.out.println("Multiple inheritance");
+	}
+	
+	public static void main(String arg[])
+	{
+		 module_info m=new  module_info();
+		m.show();
+	}
+}
