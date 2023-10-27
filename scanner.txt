@@ -1,0 +1,18 @@
+Scanner:- 
+>accepting input from keyboard
+>in order to use scanner class we have to use scanner object
+> Scanner input =new Scanner(System.in);
+>imput methods:-methods to use read data from the keyboard
+1)input.next() // read a string 
+2)input.nextInt()// read an integer
+3)input.nextDouble()// read an double
+>System.out.println(input.next());
+
+
+
+e.g
+class Scanner{
+public static void main(){
+scanner input= new scanner(System.in);// rememer system.in
+int a=input.nextInt();// int ka I capital and assign
+Sytem.out.println(a);
