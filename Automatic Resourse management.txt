@@ -1,0 +1,37 @@
+ try with round bracket is ARM block
+
+try(FileInputStream fis= FileInputStream("abc.txt")
+{
+   
+    // code to read the file
+
+}
+
+catch(FileFoundExceptiom e)
+{
+   e.printStacktrace();
+}
+
+
+
+we do not nead to write finally block  compiler will provide compiler will convert code into
+
+
+try(FileInputStream fis= FileInputStream("abc.txt")
+{
+   
+    // code to read the file
+
+}
+
+catch(FileFoundExceptiom e)
+{
+   e.printStacktrace();
+}
+
+finally // automatic resourse mangement
+{
+   fis.close();
+}
+
+ 
