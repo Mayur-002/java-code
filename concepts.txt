@@ -1,0 +1,54 @@
+>Design pattern:Design patterns are solutions to general problems that software developers faced during software development.
+
+>According to these authors design patterns are primarily based on the following principles of object orientated design.
+•	Program to an interface not an implementation
+•	Favor object composition over inheritance
+>There are three basic classifications of patterns 
+1)Creational, 
+2)Structural and 
+3)Behavioral patterns.
+............................................................................................................................................................................................
+
+> singleton-singleton is creational design pattern
+>What is Singleton?
+-There are some scenarios where we need only one object to be created: thread pools, caches,
+-public class Singleton {
+    private static Singleton uniqueInstance;
+
+    private Singleton() {
+        // Private constructor to prevent instantiation from outside the class
+    }
+
+    public static Singleton getSingleton() {
+        if (uniqueInstance == null) {
+            uniqueInstance = new Singleton();
+        }
+        return uniqueInstance;
+    }
+}
+-The class has a private static variable uniqueInstance that holds the single instance of the class.
+-The public method getSingleton() is used to get the instance of the class. If the instance does not exist (uniqueInstance == null), it creates a new one; otherwise, it returns the existing instance.
+-Note that this implementation, while simple, is not thread-safe. In a multithreaded environment, two threads might simultaneously check that uniqueInstance is null and create two instances. To make it thread-safe, you might consider using synchronization or a double-checked locking mechanism
+-This approach is called lazy initialization because the instance is not created until the first time it's requested.
+-uniqueInstance = new Singleton();
+first time its requested
+...........................................................................................................................................................................................
+
+>What will happen to the above code if two threads will execute it?
+Thread 1
+	getSingleton()
+	if(uniqueInstance==null)
+	{
+		uniqueInstance=new Singleton();
+		return uniqueInstance;
+	}
+Thread 2
+	getSingleton()
+	if(uniqueInstance==null)
+	{
+		uniqueInstance=new Singleton();
+		return uniqueInstance;
+	}
+i.e. two different objects are returned.
+We must ensure that Singleton works in the presence of multiple threads.
+...........................................................................................................................................................................................
