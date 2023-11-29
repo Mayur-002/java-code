@@ -1,3 +1,7 @@
+DAY1:-
+.............................
+............................
+
 >Design pattern:Design patterns are solutions to general problems that software developers faced during software development.
 
 >According to these authors design patterns are primarily based on the following principles of object orientated design.
@@ -51,4 +55,101 @@ Thread 2
 	}
 i.e. two different objects are returned.
 We must ensure that Singleton works in the presence of multiple threads.
+>sychronized:By adding synchronized keyword to getSingleton(),we force every thread to wait its turn before it can enter the method. That is no two threads may enter the method at the same time.
+-synchronization is relevant only for the first time. i.e. once we’ve set the uniqueInstance variable to an instance of Singleton, we have no further need to synchronized this method.
+............................................................................
+
+>we have three options :-
+
+1)Synchronize the Entire Method:
+
+public static synchronized Singleton getSingleton() {
+    if (uniqueInstance == null) {
+        uniqueInstance = new Singleton();
+    }
+    return uniqueInstance;
+}
+-Synchronization ensures thread safety.
+- synchronizing the entire method (as in the first option) can potentially slow down the program, especially when many threads are concurrently trying to access the getSingleton() method.
+
+2)Move to an eagerly created instance rather than a lazily created one:
+
+private static Singleton uniqueInstance = new Singleton();
+
+public static Singleton getSingleton() {
+    return uniqueInstance;
+}
+
+3)Use double-checked locking to reduce the use of synchronization in getSingleton();
+With double-checked locking, we first check to see if an instance is created and if not, then we synchronize. This way we synchronize only for the first time.
+
+private static volatile Singleton uniqueInstance;
+
+public static Singleton getSingleton() {
+    if (uniqueInstance == null) {
+        synchronized (Singleton.class) {
+            if (uniqueInstance == null) {
+                uniqueInstance = new Singleton();
+            }
+        }
+    }
+    return uniqueInstance;
+}
+
+
 ...........................................................................................................................................................................................
+
+> 3 ways to breaK singleton:
+
+- Reflection API
+- serialization
+- Cloning
+
+> Reflection API-reflection allows the code to break the encapsulation provided by the private constructor of the Singleton class
+> serialization-Serialization is like turning an object into a format that can be easily saved to a file or byte stream
+               -For serializing the object, we call the writeObject() method of ObjectOutputStream class, and for deserialization we call the readObject() method of ObjectInputStream class.
+                - the readResolve method is implemented in the Singleton class.
+>cloning -Cloning is a way to create a duplicate object
+>Enum base singleton-the Enum-based Singleton implementation provides a thread-safe way to create singletons in Java, addressing common concerns such as thread safety,eliminates the need for explicit synchronization in the code.
+.........................................................................................................................................................................................
+>JDBC:JDBC stands for Java Database Connectivity. It is a Java-based API (Application Programming Interface) that provides a standard interface for connecting Java applications to relational databases. 
+>Key features and components of JDBC include:-
+
+1)Connection Interface:The java.sql.Connection interface represents a connection to a database. It provides methods for establishing a connection, creating statements, and managing transactions.
+
+2)Statement Interface:The java.sql.Statement interface is used to execute SQL queries against the database. There are different types of statements, such as Statement, PreparedStatement, and CallableStatement, each serving different purposes.
+
++-----------------------+---------------------+-----------------------+----------------------+
+| Feature               | Statement           | PreparedStatement   | CallableStatement    |
++-----------------------+---------------------+-----------------------+----------------------+
+| Type of Query         | Basic SQL queries   | Parameterized SQL    | Stored procedures   |
+|                       |                     | queries               |                      |
++-----------------------+---------------------+-----------------------+----------------------+
+| Execution            | Compiled and        | Precompiled and      | Precompiled and     |
+|                       | executed directly   | parameterized        | parameterized, used |
+|                       | by the database      |                   | for stored procedures|
++-----------------------+---------------------+-----------------------+----------------------
++-----------------------+---------------------+-----------------------+----------------------+
+| Use Case              | Simple, static SQL  | Parameterized SQL    | Calling stored      |
+|                       | queries             | queries, preventing  | procedures in the   |
+|                       |                     | SQL injection        | database             |
++-----------------------+---------------------+-----------------------+----------------------+
+| Example Query        | SELECT * FROM       | SELECT * FROM         | {call                |
+|                       | your_table;         | your_table WHERE      | your_stored_procedure|
+|                       |                     | column = ?;           | (?)};               |
++-----------------------+---------------------+-----------------------+----------------------+
+
+
+
+3)ResultSet Interface
+4)DriverManager
+5)JDBC Drivers
+6)Connection URL
+
+
+
+
+
+
+
+
