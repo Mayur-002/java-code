@@ -147,6 +147,47 @@ public static Singleton getSingleton() {
 6)Connection URL
 
 
+............................................................................................................................................................................................................................................................................
+
+>servlet:- servelt is a server-side(e.g.springboot ,JSP,python) technology which is used to 
+          -handle the client request,(client-browser )
+          -process the request and 
+          -generate the dynamic response.
+
+> we deploy the servlet on server
+
+>server - is a software ,two types of server
+        -->web server= ApacheTomacat
+        -->Application server=JBOSS
+
+>Apache Tomcat server contain container like 
+         - servlet container
+         - jsp container
+         - JNDI container
+          -JSP container
+
+>hirareachy:-
+
+ Servlet is a interface 
+    ||                             
+ Generic Servlet(class)
+    ||
+ Http Servlet(class)
+     
+
+> Servelet interface defines only lifecycle like 
+
+1)init
+2)doget
+3)dopost
+4)service
+5)destroy
+
+>Generic Servlet:- When We want to create protocol independent (i.e. no request and response object)servlet then we use Generic Servlet 
+
+> HTTP Servlet:-and when we want request response  or methods like (GET,POST,DELETE)object then we use HTTP servlet class to create servlet class
+
+>web.xml (deployment descriptor)- When we create servlet then we have to Generate web.xml file
 
 
 
