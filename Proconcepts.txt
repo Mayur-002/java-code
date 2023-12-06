@@ -1,0 +1,430 @@
+DAY1:- Application Programming Interface, is a set of rules and protocols that allows different software applications to communicate with each other
+.............................
+............................
+
+>Design pattern:Design patterns are solutions to general problems that software developers faced during software development.
+
+>According to these authors design patterns are primarily based on the following principles of object orientated design.
+•	Program to an interface not an implementation
+•	Favor object composition over inheritance
+>There are three basic classifications of patterns 
+1)Creational, 
+2)Structural and 
+3)Behavioral patterns.
+............................................................................................................................................................................................
+
+> singleton-singleton is creational design pattern
+>What is Singleton?
+-There are some scenarios where we need only one object to be created: thread pools, caches,
+-public class Singleton {
+    private static Singleton uniqueInstance;
+
+    private Singleton() {
+        // Private constructor to prevent instantiation from outside the class
+    }
+
+    public static Singleton getSingleton() {
+        if (uniqueInstance == null) {
+            uniqueInstance = new Singleton();
+        }
+        return uniqueInstance;
+    }
+}
+-The class has a private static variable uniqueInstance that holds the single instance of the class.
+-The public method getSingleton() is used to get the instance of the class. If the instance does not exist (uniqueInstance == null), it creates a new one; otherwise, it returns the existing instance.
+-Note that this implementation, while simple, is not thread-safe. In a multithreaded environment, two threads might simultaneously check that uniqueInstance is null and create two instances. To make it thread-safe, you might consider using synchronization or a double-checked locking mechanism
+-This approach is called lazy initialization because the instance is not created until the first time it's requested.
+-uniqueInstance = new Singleton();
+first time its requested
+...........................................................................................................................................................................................
+
+>What will happen to the above code if two threads will execute it?
+Thread 1
+	getSingleton()
+	if(uniqueInstance==null)
+	{
+		uniqueInstance=new Singleton();
+		return uniqueInstance;
+	}
+Thread 2
+	getSingleton()
+	if(uniqueInstance==null)
+	{
+		uniqueInstance=new Singleton();
+		return uniqueInstance;
+	}
+i.e. two different objects are returned.
+We must ensure that Singleton works in the presence of multiple threads.
+>sychronized:By adding synchronized keyword to getSingleton(),we force every thread to wait its turn before it can enter the method. That is no two threads may enter the method at the same time.
+-synchronization is relevant only for the first time. i.e. once we’ve set the uniqueInstance variable to an instance of Singleton, we have no further need to synchronized this method.
+............................................................................
+
+>we have three options :-
+
+1)Synchronize the Entire Method:
+
+public static synchronized Singleton getSingleton() {
+    if (uniqueInstance == null) {
+        uniqueInstance = new Singleton();
+    }
+    return uniqueInstance;
+}
+-Synchronization ensures thread safety.
+- synchronizing the entire method (as in the first option) can potentially slow down the program, especially when many threads are concurrently trying to access the getSingleton() method.
+
+2)Move to an eagerly created instance rather than a lazily created one:
+
+private static Singleton uniqueInstance = new Singleton();
+
+public static Singleton getSingleton() {
+    return uniqueInstance;
+}
+
+3)Use double-checked locking to reduce the use of synchronization in getSingleton();
+With double-checked locking, we first check to see if an instance is created and if not, then we synchronize. This way we synchronize only for the first time.
+
+private static volatile Singleton uniqueInstance;
+
+public static Singleton getSingleton() {
+    if (uniqueInstance == null) {
+        synchronized (Singleton.class) {
+            if (uniqueInstance == null) {
+                uniqueInstance = new Singleton();
+            }
+        }
+    }
+    return uniqueInstance;
+}
+
+
+...........................................................................................................................................................................................
+
+> 3 ways to breaK singleton:
+
+- Reflection API
+- serialization
+- Cloning
+
+> Reflection API-reflection allows the code to break the encapsulation provided by the private constructor of the Singleton class
+> serialization-Serialization is like turning an object into a format that can be easily saved to a file or byte stream
+               -For serializing the object, we call the writeObject() method of ObjectOutputStream class, and for deserialization we call the readObject() method of ObjectInputStream class.
+                - the readResolve method is implemented in the Singleton class.
+>cloning -Cloning is a way to create a duplicate object
+>Enum base singleton-the Enum-based Singleton implementation provides a thread-safe way to create singletons in Java, addressing common concerns such as thread safety,eliminates the need for explicit synchronization in the code.
+.........................................................................................................................................................................................
+>JDBC:JDBC stands for Java Database Connectivity. It is a Java-based API (Application Programming Interface) that provides a standard interface for connecting Java applications to relational databases. 
+>Key features and components of JDBC include:-
+
+1)Connection Interface:The java.sql.Connection interface represents a connection to a database. It provides methods for establishing a connection, creating statements, and managing transactions.
+
+2)Statement Interface:The java.sql.Statement interface is used to execute SQL queries against the database. There are different types of statements, such as Statement, PreparedStatement, and CallableStatement, each serving different purposes.
+
++-----------------------+---------------------+-----------------------+----------------------+
+| Feature               | Statement           | PreparedStatement   | CallableStatement    |
++-----------------------+---------------------+-----------------------+----------------------+
+| Type of Query         | Basic SQL queries   | Parameterized SQL    | Stored procedures   |
+|                       |                     | queries               |                      |
++-----------------------+---------------------+-----------------------+----------------------+
+| Execution            | Compiled and        | Precompiled and      | Precompiled and     |
+|                       | executed directly   | parameterized        | parameterized, used |
+|                       | by the database      |                   | for stored procedures|
++-----------------------+---------------------+-----------------------+----------------------
++-----------------------+---------------------+-----------------------+----------------------+
+| Use Case              | Simple, static SQL  | Parameterized SQL    | Calling stored      |
+|                       | queries             | queries, preventing  | procedures in the   |
+|                       |                     | SQL injection        | database             |
++-----------------------+---------------------+-----------------------+----------------------+
+| Example Query        | SELECT * FROM       | SELECT * FROM         | {call                |
+|                       | your_table;         | your_table WHERE      | your_stored_procedure|
+|                       |                     | column = ?;           | (?)};               |
++-----------------------+---------------------+-----------------------+----------------------+
+
+
+
+3)ResultSet Interface
+4)DriverManager
+5)JDBC Drivers
+6)Connection URL
+
+
+............................................................................................................................................................................................................................................................................
+
+>servlet:- servelt is a server-side(e.g.springboot ,JSP,python) technology which is used to 
+          -handle the client request,(client-browser )
+          -process the request and 
+          -generate the dynamic response.
+
+> we deploy the servlet on server
+
+>server - is a software ,two types of server
+        -->web server= ApacheTomacat
+        -->Application server=JBOSS
+
+>Apache Tomcat server contain container like 
+         - servlet container
+         - jsp container
+         - JNDI container
+          -JSP container
+
+>hirareachy:-
+
+ Servlet is a interface 
+    ||                             
+ Generic Servlet(class)
+    ||
+ Http Servlet(class)
+     
+
+> Servelet interface defines only lifecycle like 
+
+1)init
+2)doget
+3)dopost
+4)service
+5)destroy
+
+>Generic Servlet:- When We want to create protocol independent (i.e. no request and response object)servlet then we use Generic Servlet 
+
+> HTTP Servlet:-and when we want request response  or methods like (GET,POST,DELETE)object then we use HTTP servlet class to create servlet class
+
+>web.xml (deployment descriptor)- When we create servlet then we have to Generate web.xml file
+
+> 1)Upon receiving the first-time request to http://localhost:8080/dac/FirstServ
+  2)Web Container opens the Deployment Descriptor (web.xml)
+  3) it searches the url-pattern by the name "/FirstServ"
+  4) identifies the servlet name "FirstServ,"from servlet-name, it finds out servlet-class(.class file) in classes folder
+
+ 5)now it loads and create instance of "firstserve" by invoking "no-arg constructor"
+6)and invokes "init" method(init method intialize servlet object)
+(init methode execute only once)
+7)manages a thread from the pool, creates HttpServletRequest and HttpServletResponse,  calls the service method(service method invokes after client send the request and servide method handles that request )
+8)service() method checks whether request is "get" or "post". if it is "get" service() method invokes "doGet()" and if it is "post" it invokes "doPost()"
+9) whenever  server get request from the clint thread will get created and each thread handle the  different request (multithreading are there in servlet)
+10) as soon as server get shutdwon destroy methode get executed and servlet object get destroy
+
+> first 4 lines decode:-1)Imagine a user, a visitor to your web application, typing the URL http://localhost:8080/dac/FirstServ in their browser and hitting Enter. This is the first request, seeking something at the path /dac/FirstServ on the server.
+2) now The Web Container responsible for managing servlets,opens a file called web.xml in your web application.This file is like a blueprint  tells the container how to handle different servlets.
+3)think of the url-pattern in web.xml like an address label for a servlet. When the Web Container receives a request, it checks this label to know exactly which servlet should handle that specific type of request
+4)it knows which Java class is associated with this servlet
+
+>web.xml work =it checks this label to know exactly which servlet should handle that specific type of request
+
+>HttpServletRequest and HttpServletResponse are two fundamental interfaces in the Java Servlet API, representing the request and response objects exchanged between a client and a servlet in a web application.
+............................................................................................................................................................................................................................................................................
+
+
+1>DriverManager vs DataSource:
+
+> DriverManager is - class,Simple JDBC approach for managing database connections.
+                   -Does not provide built-in connection pooling.
+                   -A new connection is created for each request from scratch.
+>DataSource- Interface in Java EE Supports connection pooling,reducing the overhead of creating new connections.better resource utilization by implementing connection pooling
+ 
+
+2>class.forname:Class.forName is a method used to dynamically load and register a JDBC driver, allowing the application to connect to a specific database by specifying the driver class.
+
+3>what do you mean by jdbc is by default connected view of architecture:-jDBC's "connected view" means that, in a Java application, you directly establish a live connection to the database, execute SQL statements, and manage the connection throughout the application's lifecycle
+
+4>statement vs preparedstatement:
+>statement:- is interface used to execute normal Sql queries.
+           -SQL queries are directly executed without any pre-compilation.
+>prepared statement -is interface used to execute dynamic sql queries .
+                    -SQL queries are  pre-compilation.
+                    -To prevent SQL INJECTION(add extra instructions to your database querie), always use a safer way called "prepared statements"
+
+>collable statement -used to call stored procedure 
+
+5>what happens when you run servlet for the first time:
+1)web container-web.xml
+2)url-pattern
+3)servlet name
+4)servlet class
+5)object -no arg constructor
+6)init()
+7)thread management
+8)service()-do get do post
+9)server shutdown - destroy()
+
+6>Request method can be mainly get or post.
+
+get request
+	limited amt. of data can be sent to the server
+	request parameters can be seen on the address bar
+	it is mainly used to get some information from the server.
+
+
+post request
+	no limit of data that can be sent to the server.
+	request parameters are not seen on the address bar.
+	it is mainly used to add some data on the server.
+
+7)in the dynamic web project what is the location of html and web.xml file
+-->HTML files -WebApp
+-->WEB.xml-Web-INF
+
+8)how do you create PrintWriter(PrintWriter is a class in the java.io) in servlet?
+-->by calling response.getWriter()
+
+9)where exactly have you seen the application of static block in JDK?
+-->The static block is often used to register the driver with the DriverManager as part of the class initialization.
+
+10)scrollable and updatable result set?
+-->By default ResultSet is readonly and forward only
+-->1)Scrollable ResultSet:
+                       =>A scrollable result set allows you to move the cursor both forward and backward through the rows of the result set.also provide provision for retrive date but no updation
+                       =>It provides methods such as next(), previous(), first(), last(), etc., that allow you to navigate through the result set in various directions.
+-->Updatable ResultSet:
+
+                    =>An updatable result set allows you to not only retrieve data from the result set but also update, insert, and delete rows in the underlying database.
+                    =>It provides methods such as updateString(), updateInt(), insertRow(), etc., that enable you to modify the data in the result set and persist those changes to the database.
+
+11)what is the use of ResourceBundle class
+-->ResourceBundle is a Java tool that reads resources, such as text messages, from property files.
+
+12)in order to be a namingservice what are the requirements
+-->provide the ability to bind names to objects and to look up objects by name
+
+13)since in JDBC commit is by default true, how do you implement transaction
+-->1)Disable Auto-Commit:
+                  Use setAutoCommit(false) to disable auto-commit and start a transaction.(sequnece of related statements   that are fullycommited or rollback)
+
+  2)Execute SQL Statements:
+                   Execute multiple SQL statements within a try block as part of the transaction.
+  3)Commit (if successful):
+                   If all SQL statements succeed, use commit() to commit the transaction.
+  4)Rollback (if exception):
+          If an exception occurs during execution, use rollback() to undo changes made in the transaction.
+  5)Enable Auto-Commit:
+
+     Finally, use setAutoCommit(true) to enable auto-commit again.
+
+14)what is JNDI
+-->JNDI is a API  that provides a standardized way for Java applications to access and interact with naming and directory services
+
+15)what is URL pattern in servlet tag
+-->specific web address (URL) or a pattern of addresses that should be handled by a particular servlet in a Java web application.
+
+16)Difference between execute, executeQuery, and executeUpdate:
+
+execute: Executes any SQL statement. Returns a boolean indicating the type of the result.
+executeQuery: Executes a SELECT SQL statement. Returns a ResultSet containing query results.
+executeUpdate: Executes an SQL statement that modifies the database. Returns the number of rows affected
+
+17)what is the use of ResultSetMetaData:-
+..>methode column count,column name ,column type  it returns result inside from these data 
+
+18)why in JDBC most of them are interfaces , why not classes?
+--> Developers can create their own implementations of JDBC interfaces to extend or modify the behavior to suit specific requirements
+
+19)making http statefull:
+1)hidden fields
+2)custom cookies
+3)http session
+4)url rewriting
+
+20)cookies:-used to store info only textual info
+           -can be reject by client 
+           -cookies always added inside response and retrive from request
+>drawback of cookies -limited stroge in few kb can not make object
+                     -security concern=Cookies can be used to track user behavior across different websites, raising privacy concerns. Some users may disable cookies
+
+21) parameter can be string and attribute can be java object
+    -attribute in servlet: request,session ,context
+    -attribute in JSP-page ,application ,request ,session
+
+22)parameter in servlet used to send some kind of info 
+parameters are used to send some kind of information to the servlet.	
+
+	types of parameters passed to servlet
+
+1) request
+2) init or config
+3) context
+
+request:- these parameters are limited to only a particular request
+
+init or config :- these parameters are shared by all the requests to a particular servlet
+
+context :- these parameters are shared by all the servlets in that particular context (e.g. dac)
+
+
+request parameters are automatically set in the request.
+init and context parameters need to be explicitly set in the DD.
+
+request parameter can be read by the method "getParameter()".
+
+init or config and context parameters can be read by the method "getInitParameter()".
+
+
+in order to read request parameter, you need to use "HttpServletRequest".
+
+in order to read init or config parameter, you need to use "ServletConfig" which is one per servlet.
+
+in order to read context parameter, you need to use "ServletContext" which is one per context.
+
+request parameters are automatically set in the request.
+init and context parameters need to be explicitly set in the DD.
+
+
+23) redirect and forward 
+> redirect = when a servlet1 is unable to process a request it recommended another sevlet2 at different server  to client to process on request (different rquest)
+>Signature: void sendRedirect(String url)
+>Implemented using HttpServletResponse.sendRedirect().
+
+>forward = servlet 1 pasess the request to servlet 2 without the client being informed which process the request and servlet 1 give the response to client (same reuest ) can go beyond container
+>forward(ServletRequest request, ServletResponse response)
+>Implemented using RequestDispatcher.forward().
+
+>includeresponse-Client will get the combined response of servlet1 and servlet2
+
+>RequestDispacher interface provides fascility of forwaeding the request to another seervlet and also include the content of another resourse 
+>Methods of RequestDispatcher interface
+-->forward
+-->include
+
+24)ServletConfig vs ServletContext
+-->ServletConfig is servlet specific  :   ServletContext is for whole application
+-->euse ne servlet needs information shared by it:Use ServletContext when whole application needs information shared by it
+                                      
+
+24) filter:-filter are plugable component.and its entry defined in the web.xml,if we remove the entry of filter from the web.xml file,
+           -it gives maintaince advantage ,that we don't have make changes inside every sevelet for every new requirement 
+
+>two types of filter-request filter ,response filter
+>mthod inti,dofilter,destroy
+
+25)what does properties file contain ? can it contain java objects?
+-->A properties file in Java contains key-value pairs of configuration data, typically used for storing simple settings, and it does not natively support the storage of Java objects, only string values.
+
+26)session-session is a state consisting of several requests and response between the client and the server
+
+27)
+how many implicit object are there in JSP =9 request,response,page ,application,config,page context ,page object,exception ,out
+
+28) iserrorpage -This attribute is used specify that current jsp page can be used as an error page. It can have true or false value.
+
+errorPage attribute:
+This attribute is used to specify the URL of JSP page which is used as error page.
+
+29)request.getSession() or request.getSession(true)
+		vs
+request.getSession(false)
+-->Calling getSession() and getSession(true) are functionally the same
+-->etSession(false), though, retrieves the current session, and if one doesn’t exist yet, returns null
+
+
+30)init steps=1) There are two init() methods with HttpServlet
+	public void init()
+	public void init(ServletConfig config)
+
+2) Web Container before invoking init method , creates ServletConfig and stores any init parameter set inside it.
+
+3) Web Container invokes "init(ServletConfig config)" method of HttpServlet by passing ServletConfig implementation.
+
+4) HttpServlet's "init(ServletConfig config)" method invokes "init()" method of its own.
+
+
+
+
+           -
+
