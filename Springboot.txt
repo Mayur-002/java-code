@@ -1,0 +1,76 @@
+>>Spring features :-POJO ,Dependency Inejection,MVC,AOP
+
+>>Spring framework can integrate with hibernate and struts
+
+>> Developer >>> Springboot >>> Spring >>Spring Boot  is built on top of the Spring framework>>which eliminates the boilerplate configurations required for setting up a Spring application.
+
+>>in springboot our jar file have embeded tomcat (like you can easily switch to other embedded servers)
+
+>> spring -boot -starter-web = give a web project 
+
+>>springboot have application .properties not have xml>> it still supports XML configuration if needed. It's more about convention over configuration
+
+>> Dependency Inejection => design pattern >> to make a class independent of its dependencies or to create a loosely coupled program.>>dependencies of a class are provided from the outside
+
+>>The primary goal of DI is to achieve a loosely coupled system by making classes independent of their dependencies.
+ ->@Autowired is one way to implement DI in Spring, but there are other methods like 
+ ->constructor injection and 
+ ->setter injection.
+
+>> @Autowired=This annotation is part of the Spring IoC (Inversion of Control) container and is used for automatic dependency injection.(@Autowired when there are multiple beans of the same type, )
+
+>> sts >> springtoolsuite >> file new >> Spring Starter Project>>name it >>maven>> next>>finish
+
+>> ConfigurableApplicationContext run => run methode returns the object  ConfigurableApplicationContext
+                     
+
+>> in spring container there is spring bean(objects)
+>> we have two different scope -singleton (by default springframework uses singleton design pattern i.e.we will get only one object the movement we start the aplicatiuon we will get our object)
+                               - prototype(@Scope(value="prototype") framework will use prototype i.e. we will not get our object /instance by default i.e. we can create more objects )
+
+>> getbean ==> we wil get object
+>> @component=> hey spring framework this is the particular class that i want an object and create it  and after instantiated we will get connected with that object which create dby spring framework
+>> springframeowork injecting object in our application automatically(i.e. we do not want to do explicit casting)==> dependecy injection
+
+>> @Autowired ==> it will try to search the object in the Spring Container(search  by type=>@Autowired when there are multiple beans of the same type, )
+>>@Qulifier==> object search by name
+
+
+>> creating web Application where we will making a view in jsp:-
+>new >>spring  starter  project>>web feature like web,( Spring web,Thymeleaf,Spring Boot Devtools,MySQL Driver,Spring Data JPA e.t.c)>>main>> folder>>webapp>>new>>other>>jsp>>main >demo>new class>>name it finish
+
+>> @controller=spring controller get sure that this controller handles all the request
+
+>>@RequestMapping(for which reuqest i want to handle )
+
+>>web using spring boot =>
+>if we want to do any configuration we have this special file  called Application.properties
+>> in this  file we define two properties -prefix= the path of page /pages/
+                                          -suffix=the extension of page is defined by suffix .jsp
+>>Spring MVC gives us special class Model and view which can two things  view and data 
+
+.............MCQ.............
+
+
+>> class constructor create bean 
+
+>>class attribute is used to sepcify class name of the bean
+
+>>static factory method is used to instantiate a method  ===>> exception thrwon by factory method Beancreation Exception
+
+>>bean follow naming convention like start with lowercase ,camelcase from then on
+
+>>
+
+
+
+
+
+
+
+
+
+
+
+
+
