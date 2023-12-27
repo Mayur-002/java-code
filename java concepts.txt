@@ -1,0 +1,57 @@
+>> interface :-
+
+1> functional interface has only sigle abstract method ,but it may also many default methods
+
+2> we can define methode in interface ,using default keyword.
+
+e.g. 
+interface Demo
+{
+  void abc();// Single abstract methode,that means this the exa,ple of functional interface
+  default void show ()
+  {
+      System.out.println("in show");// methode defination
+      
+  }
+}
+
+3>in interface we can have static methode and we don't need to create object we can call methdos directly by interface name
+
+e.g. 
+ interface Demo
+{
+  void abc();// Single abstract methode,that means this the exa,ple of functional interface
+  default void show ()
+  {
+      System.out.println("in show");// methode defination
+      
+  }
+}
+public class InterfaceDemo
+{
+  public static void main(string [] args)
+ {
+   Demo.show();
+ }
+}
+
+
+4) whenever we create(initialize+declare) variable inside a interface it's by default final/constant 
+
+
+.........................................................................................
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
